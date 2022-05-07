@@ -17,7 +17,7 @@ services:
       - "3306:3306"
     volumes:
       - ./docker/db/mysqld_charset.cnf:/etc/mysqld_charset.cnf
-  
+
   backend:
     container_name: go
     tty: true
@@ -36,7 +36,7 @@ services:
       context: ./
       dockerfile: ./docker/nginx/Dockerfile
     environment:
-      TZ: Asia/Tokyo
+      - NODE_ENV=development
     ports:
       - "80:80"
       - "443:443"

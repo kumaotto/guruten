@@ -4,11 +4,11 @@ WORKDIR /app
 COPY package*.json ./
 COPY yarn.lock ./
 RUN yarn install
-COPY src/ ./
+COPY src/ ./src/
 RUN yarn run build
 
-FROM nginx:1.17.10-alpine as production-stage
+FROM nginx:1.17.10-alpine
 
 RUN mkdir /app
 COPY --from=build-stage /app/dist /app
-COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY docker/nginx/default.conf /etc/nginx/default.conf
