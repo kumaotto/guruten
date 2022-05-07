@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 import Header from '@/components/Organisms/Header'
 import ImageUrl from '@/components/Atoms/ImageUrl';
 
@@ -40,13 +40,13 @@ export default {
     }
   },
   created() {
-    firebase.firestore()
-      .collection('exhibitions')
-      .doc(this.$route.params.id)
-      .get()
-      .then((doc) => {
-        this.data = doc.data();
-      })
+    // firebase.firestore()
+    //   .collection('exhibitions')
+    //   .doc(this.$route.params.id)
+    //   .get()
+    //   .then((doc) => {
+    //     this.data = doc.data();
+    //   })
   }
 }
 </script>

@@ -38,8 +38,7 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
-import { uploadWorks, downloadWorks } from '@/firebase/storage.js'
+// import { uploadWorks, downloadWorks } from '@/firebase/storage.js'
 import Header from '@/components/Organisms/Header'
 import FileUpload from '@/components/Molecules/FileUpload'
 import TextFiled from '@/components/Molecules/TextField'
@@ -72,35 +71,35 @@ export default {
       this.$router.go({ path: this.$router.currentRoute.path, force: true });
     },
     onClickSubmit() {
-      uploadWorks(this.artwork, this.artwork.name).on(
-        "state_changed",
-        null,
-        error => {
-          console.error(error);
-        },
-        () => {
-          downloadWorks(this.artwork.name)
-            .then((imageURL) => {
-              this.artwork = imageURL;
+      // uploadWorks(this.artwork, this.artwork.name).on(
+      //   "state_changed",
+      //   null,
+      //   error => {
+      //     console.error(error);
+      //   },
+      //   () => {
+      //     downloadWorks(this.artwork.name)
+      //       .then((imageURL) => {
+      //         this.artwork = imageURL;
 
-              const colref = firebase.firestore().collection("exhibitions");
-              const userId = this.$route.params.id;
-              const data = {
-                artworks: firebase.firestore.FieldValue.arrayUnion({
-                  artwork: this.artwork,
-                  artworkName: this.artworkName,
-                  author: this.author
-                })
-              };
-              colref.doc(userId).set(data, { merge: true })
-                .then(() => {
-                  this.saved = true;
-                })
-                .catch((error) => {
-                  console.error("Error adding document: ", error);
-                })
-            })
-        }
+      //         const colref = firebase.firestore().collection("exhibitions");
+      //         const userId = this.$route.params.id;
+      //         const data = {
+      //           artworks: firebase.firestore.FieldValue.arrayUnion({
+      //             artwork: this.artwork,
+      //             artworkName: this.artworkName,
+      //             author: this.author
+      //           })
+      //         };
+      //         colref.doc(userId).set(data, { merge: true })
+      //           .then(() => {
+      //             this.saved = true;
+      //           })
+      //           .catch((error) => {
+      //             console.error("Error adding document: ", error);
+      //           })
+      //       })
+      //   }
       )
     },
   },
